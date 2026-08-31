@@ -1,11 +1,11 @@
 {
-  "SPPG": "Kota Malang Blimbing Arjosari",
+  "dapur": "SPPG Kota Malang Blimbing Arjosari",
   "menu": {
     "2026-08-31": {
       "hari": "Senin",
-      "foto": "image/menu-2026-08-31.png",
+      "foto": "image/menu-2026-08-31.jpg",
       "isiOmpreng": ["Nasi putih", "Ayam Kungpao", "Cah Sawi Putih", "Pepaya", "Perkedel Tahu"],
-      "penerimaManfaat": 3.567,
+      "penerimaManfaat": 3478,
       "gizi": {
         "porsiKecil": [
           { "label": "Energi", "value": "450 kkal" },

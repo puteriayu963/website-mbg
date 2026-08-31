@@ -75,17 +75,18 @@ body{
   color: #BFE0F7;
   font-weight: 500;
 }
-.card__day{
+.card__sppg{
   margin: 2px 0 0;
   font-family: var(--font-judul);
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.3;
 }
-.card__dapur{
+.card__day{
   margin: 4px 0 0;
-  font-size: 12.5px;
-  color: #A9CFEE;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #CFE6FA;
 }
 
 .kembali-btn{
@@ -116,14 +117,7 @@ body{
   display: block;
 }
 .card__photo-placeholder{
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center;
-  padding: 0 24px;
-  color: var(--emas);
-  font-family: var(--font-judul);
-  font-weight: 700;
-  font-size: 18px;
+  display: none;
 }
 
 .tabs{
@@ -215,10 +209,12 @@ body{
 #box-penerima{ margin-top: 12px; }
 
 .notice{
-  border-left: 2px solid var(--biru-tua-2);
-  border-right: 2px solid var(--biru-tua-2);
+  border-left: 3px solid var(--emas-gelap);
+  border-right: 3px solid var(--emas-gelap);
+  background: #FFF8EC;
   padding: 18px 22px;
   text-align: center;
+  border-radius: 4px;
 }
 .notice__title{
   margin: 0 0 8px;
@@ -226,6 +222,14 @@ body{
   font-weight: 700;
   font-size: 17px;
   color: var(--teks);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.notice__title::before{
+  content: "⚠";
+  color: var(--emas-gelap);
 }
 .notice__text{
   margin: 0;

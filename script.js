@@ -159,15 +159,15 @@ async function init(){
     const data = await ambilData();
     dataGlobal = data;
 
-    document.getElementById('dapur-info').textContent = data.dapur || '';
+    document.getElementById('nama-sppg').textContent = data.dapur || 'SPPG';
     document.getElementById('footer-dapur').textContent = 'Disiapkan di dapur — ' + (data.dapur || '-');
 
     renderUntukTanggal(kunciHariIniGlobal);
 
   }catch(err){
     console.error(err);
-    document.getElementById('hari-tanggal').textContent = 'Gagal memuat menu';
-    document.getElementById('dapur-info').textContent = 'Cek menu.json / koneksi internet';
+    document.getElementById('nama-sppg').textContent = 'Gagal memuat menu';
+    document.getElementById('hari-tanggal').textContent = 'Cek menu.json / koneksi internet';
   }
 }
 

@@ -8,16 +8,18 @@
       "penerimaManfaat": 3478,
       "gizi": {
         "porsiKecil": [
-          { "label": "Energi", "value": "450 kkal" },
-          { "label": "Protein", "value": "18 g" },
-          { "label": "Karbohidrat", "value": "60 g" },
-          { "label": "Lemak", "value": "12 g" }
+          { "label": "Energi", "value": "478,4 kkal" },
+          { "label": "Protein", "value": "14,9 g" },
+          { "label": "Lemak", "value": "17,3 g" },
+          { "label": "Karbohidrat", "value": "65,2 g" }
+          { "label": "Serat", "value": "2,1 g" }
         ],
         "porsiBesar": [
-          { "label": "Energi", "value": "650 kkal" },
-          { "label": "Protein", "value": "25 g" },
-          { "label": "Karbohidrat", "value": "80 g" },
-          { "label": "Lemak", "value": "18 g" }
+          { "label": "Energi", "value": "707,9 kkal" },
+          { "label": "Protein", "value": "23 g" },
+          { "label": "Lemak", "value": "28,3 g" },
+          { "label": "Karbohidrat", "value": "92,5 g" }
+          { "label": "Serat", "value": "2,4 g" }
         ]
       },
       "peringatan": "Harap dikonsumsi segera setelah diterima."

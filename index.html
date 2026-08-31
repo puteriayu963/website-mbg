@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu MBG Hari Ini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="phone-frame">
+  <div class="screen" id="screen">
+
+    <!-- HEADER -->
+    <header class="app-header">
+      <img class="badge-logo" src="images/logo-bgn.png" alt="Logo BGN"
+           onerror="this.src='https://placehold.co/88x88/eaf6ff/0b3d91?text=BGN'">
+
+      <div class="header-text">
+        <span class="eyebrow">Makan Bergizi Gratis</span>
+        <h1 id="nama-sppg">Memuat...</h1>
+        <span class="sub" id="penyelenggara">-</span>
+      </div>
+    </header>
+
+    <!-- TANGGAL -->
+    <div class="date-row">
+      <span class="day-name" id="hari-nama">-</span>
+      <span class="date-full" id="tanggal-lengkap">-</span>
+    </div>
+
+    <!-- FOTO MENU -->
+    <div class="menu-photo-wrap">
+      <img id="foto-menu" src="" alt="Foto menu hari ini" onerror="this.src='https://placehold.co/500x360/1b2a63/ffd166?text=Foto+Menu'">
+    </div>
+
+    <!-- NAV TAB -->
+    <nav class="tabs" id="tabs">
+      <button class="tab-btn active" data-panel="panel-peringatan">Peringatan</button>
+      <button class="tab-btn" data-panel="panel-isi">Isi Ompreng</button>
+      <button class="tab-btn" data-panel="panel-gizi">Gizi</button>
+    </nav>
+
+    <!-- PANEL: PERINGATAN -->
+    <section class="panel active" id="panel-peringatan">
+      <div class="warning-box">
+        <p class="warning-title">⚠ Wajib diperhatikan</p>
+        <ol class="warning-list" id="daftar-peringatan"></ol>
+      </div>
+    </section>
+
+    <!-- PANEL: ISI OMPRENG -->
+    <section class="panel" id="panel-isi">
+      <p class="panel-label">Isi ompreng hari ini</p>
+      <div class="isi-grid" id="isi-ompreng"></div>
+    </section>
+
+    <!-- PANEL: GIZI -->
+    <section class="panel" id="panel-gizi">
+      <p class="panel-label">Kandungan gizi per porsi</p>
+      <table class="gizi-table">
+        <thead>
+          <tr>
+            <th>Zat gizi</th>
+            <th>Kecil<br><span class="th-sub">PAUD–SD</span></th>
+            <th>Besar<br><span class="th-sub">SD tinggi–SMA</span></th>
+          </tr>
+        </thead>
+        <tbody id="tabel-gizi"></tbody>
+      </table>
+
+      <div class="penerima-box">
+        <span class="penerima-label">Jumlah penerima manfaat hari ini</span>
+        <span class="penerima-jumlah" id="jumlah-penerima">-</span>
+      </div>
+    </section>
+
+    <!-- PEMILIH HARI -->
+    <div class="week-picker">
+      <p class="panel-label">Menu minggu ini</p>
+      <div class="week-days" id="week-days"></div>
+    </div>
+
+    <footer class="app-footer">
+      <span id="footer-dapur">Disiapkan di dapur —</span>
+    </footer>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

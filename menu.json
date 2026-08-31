@@ -1,17 +1,18 @@
 {
-  "dapur": "Dapur SPPG Kediri 01",
+  "dapur": "Dapur SPPG Syarifudiin Islamic Center",
   "menu": {
     "2026-08-31": {
       "hari": "Senin",
-      "foto": "image/menu-2026-08-31.jpg",
-      "isiOmpreng": ["Nasi putih", "Ayam goreng bumbu kuning", "Tumis kangkung", "Pisang", "Susu UHT"],
+      "foto": "image/menu-2026-08-31.png",
+      "isiOmpreng": ["Nasi putih", "Ayam Kungpao", "Cah Sawi Putih", "Pepaya", "Perkedel Tahu"],
       "gizi": [
         { "label": "Energi", "value": "700 kkal" },
         { "label": "Protein", "value": "70 g" },
         { "label": "Karbohidrat", "value": "70 g" },
         { "label": "Lemak", "value": "70 g" }
       ],
-      "peringatan": "Menu mengandung produk susu. Bagi siswa dengan intoleransi laktosa, harap konfirmasi ke guru kelas."
+      "peringatan": "Harap dikonsumsi segera setalh diterima
+      Tidak disarankan dikonsumsi diatas jam 11.00"
     },
     "2026-09-01": {
       "hari": "Selasa",

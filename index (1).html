@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Menu MBG Hari Ini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<main class="card" id="card">
+
+  <header class="card__header">
+    <img class="card__logo" src="logo-BGN.png" alt="Logo BGN" />
+    <div class="card__title">
+      <p class="card__eyebrow">Makan Bergizi Gratis</p>
+      <h1 class="card__day" id="hari-tanggal">Memuat…</h1>
+      <p class="card__dapur" id="dapur-info">&nbsp;</p>
+      <button class="kembali-btn" id="kembali-hari-ini" hidden>← Kembali ke hari ini</button>
+    </div>
+  </header>
+
+  <div class="card__photo" id="foto-wrap">
+    <img id="foto-menu" src="" alt="Foto menu hari ini" hidden />
+    <div class="card__photo-placeholder" id="foto-placeholder">
+      <span>Foto menu belum diunggah</span>
+    </div>
+  </div>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Detail menu">
+    <button class="tabs__btn" data-tab="isiOmpreng" role="tab" aria-selected="true">Isi Ompreng</button>
+    <button class="tabs__btn" data-tab="gizi" role="tab" aria-selected="false">Gizi</button>
+    <button class="tabs__btn" data-tab="peringatan" role="tab" aria-selected="false">Peringatan</button>
+  </nav>
+
+  <section class="panel" id="panel-isiOmpreng" role="tabpanel">
+    <ul class="panel__list" id="list-isiOmpreng"></ul>
+    <div class="torn-box torn-box--accent" id="box-penerima">
+      <p class="torn-box__label">Penerima Manfaat</p>
+      <p class="torn-box__angka" id="angka-penerima">–</p>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-gizi" role="tabpanel" hidden>
+    <div class="gizi-columns">
+      <div class="torn-box">
+        <p class="torn-box__label">Porsi Kecil</p>
+        <ul class="torn-box__list" id="list-gizi-kecil"></ul>
+      </div>
+      <div class="torn-box torn-box--accent">
+        <p class="torn-box__label">Porsi Besar</p>
+        <ul class="torn-box__list" id="list-gizi-besar"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-peringatan" role="tabpanel" hidden>
+    <div class="notice">
+      <p class="notice__title">Peringatan</p>
+      <p class="notice__text" id="teks-peringatan"></p>
+    </div>
+  </section>
+
+  <section class="week">
+    <h2 class="week__title">Menu minggu ini</h2>
+    <ul class="week__list" id="week-list"></ul>
+  </section>
+
+  <footer class="card__footer">
+    <span id="footer-dapur">Disiapkan di dapur —</span>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

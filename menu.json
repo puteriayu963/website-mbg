@@ -18,17 +18,17 @@
       "isi": "Setelah selesai makan, kembalikan ompreng ke petugas dapur."
     }
   ],
-  "minggu": [
+  "senin": [
     {
-      "tanggal": "2026-08-24",
+      "tanggal": "2026-08-31",
       "hari": "Senin",
       "gambar": "images/senin.jpg",
       "isi_ompreng": {
-        "karbohidrat": "Nasi Putih",
-        "lauk_hewani": "Ayam Bakar Bumbu Kecap",
-        "lauk_nabati": "Tahu Bacem",
-        "sayur": "Sayur Asem",
-        "buah": "Pisang Ambon"
+        "Karbohidrat": "Nasi Putih",
+        "Lauk_hewani": "Ayam Kungpao",
+        "Lauk_nabati": "Perkedel Tahu",
+        "Sayur": "Cah Sawi Putih",
+        "Buah": "Pepaya"
       },
       "gizi_per_porsi": {
         "energi_kkal": { "kecil": 420.5, "besar": 690.2 },

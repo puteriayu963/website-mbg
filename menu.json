@@ -6,10 +6,10 @@
       "foto": "image/menu-2026-08-31.jpg",
       "isiOmpreng": ["Nasi putih", "Ayam goreng bumbu kuning", "Tumis kangkung", "Pisang", "Susu UHT"],
       "gizi": [
-        { "label": "Energi", "value": "650 kkal" },
-        { "label": "Protein", "value": "25 g" },
-        { "label": "Karbohidrat", "value": "80 g" },
-        { "label": "Lemak", "value": "18 g" }
+        { "label": "Energi", "value": "700 kkal" },
+        { "label": "Protein", "value": "70 g" },
+        { "label": "Karbohidrat", "value": "70 g" },
+        { "label": "Lemak", "value": "70 g" }
       ],
       "peringatan": "Menu mengandung produk susu. Bagi siswa dengan intoleransi laktosa, harap konfirmasi ke guru kelas."
     },

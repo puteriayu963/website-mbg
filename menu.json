@@ -1,143 +1,65 @@
 {
-  "program": {
-    "nama_sppg": "SPPG Kota Malang Blimbing Arjosari",
-    "penyelenggara": "Yayasan Contoh Peduli Gizi",
-    "lokasi_dapur": "Dapur SPPG Kota Malang Blimbing Arjosari"
-  },
-  "peringatan": [
-    {
-      "judul": "Makan sekarang, di tempat",
-      "isi": "Habiskan paling lambat 2 jam setelah ompreng diterima. Makanan ini dimasak tanpa bahan pengawet."
-    },
-    {
-      "judul": "Jangan dibawa pulang",
-      "isi": "Makanan yang dibawa pulang cepat basi dan berisiko menyebabkan sakit perut atau keracunan."
-    },
-    {
-      "judul": "Ompreng dikembalikan ke petugas",
-      "isi": "Setelah selesai makan, kembalikan ompreng ke petugas dapur."
-    }
-  ],
-  "senin": [
-    {
-      "tanggal": "2026-08-31",
+  "dapur": "Dapur SPPG Kediri 01",
+  "menu": {
+    "2026-08-31": {
       "hari": "Senin",
-      "gambar": "porsi kecil.png",
-      "isi_ompreng": {
-        "Karbohidrat": "Nasi Putih",
-        "Lauk_hewani": "Ayam Kungpao",
-        "Lauk_nabati": "Perkedel Tahu",
-        "Sayur": "Cah Sawi Putih",
-        "Buah": "Pepaya"
-      },
-      "gizi_per_porsi": {
-        "energi_kkal": { "kecil": 420.5, "besar": 690.2 },
-        "protein_g": { "kecil": 14.8, "besar": 24.1 },
-        "lemak_g": { "kecil": 18.2, "besar": 25.6 },
-        "karbohidrat_g": { "kecil": 54.3, "besar": 98.7 },
-        "serat_g": { "kecil": 3.0, "besar": 4.2 }
-      },
-      "jumlah_penerima": 210
+      "foto": "image/menu-2026-08-31.jpg",
+      "isiOmpreng": ["Nasi putih", "Ayam goreng bumbu kuning", "Tumis kangkung", "Pisang", "Susu UHT"],
+      "gizi": [
+        { "label": "Energi", "value": "650 kkal" },
+        { "label": "Protein", "value": "25 g" },
+        { "label": "Karbohidrat", "value": "80 g" },
+        { "label": "Lemak", "value": "18 g" }
+      ],
+      "peringatan": "Menu mengandung produk susu. Bagi siswa dengan intoleransi laktosa, harap konfirmasi ke guru kelas."
     },
-    {
-      "tanggal": "2026-08-25",
+    "2026-09-01": {
       "hari": "Selasa",
-      "gambar": "images/selasa.jpg",
-      "isi_ompreng": {
-        "karbohidrat": "Nasi Putih",
-        "lauk_hewani": "Telur Balado",
-        "lauk_nabati": "Perkedel Tempe",
-        "sayur": "Tumis Kangkung",
-        "buah": "Semangka"
-      },
-      "gizi_per_porsi": {
-        "energi_kkal": { "kecil": 405.0, "besar": 660.8 },
-        "protein_g": { "kecil": 13.2, "besar": 22.5 },
-        "lemak_g": { "kecil": 16.7, "besar": 23.9 },
-        "karbohidrat_g": { "kecil": 52.1, "besar": 94.3 },
-        "serat_g": { "kecil": 2.7, "besar": 3.9 }
-      },
-      "jumlah_penerima": 205
+      "foto": "image/menu-2026-09-01.jpg",
+      "isiOmpreng": ["Nasi putih", "Telur bumbu bali", "Sayur bayam bening", "Semangka"],
+      "gizi": [
+        { "label": "Energi", "value": "600 kkal" },
+        { "label": "Protein", "value": "20 g" },
+        { "label": "Karbohidrat", "value": "82 g" },
+        { "label": "Lemak", "value": "15 g" }
+      ],
+      "peringatan": "Menu mengandung telur."
     },
-    {
-      "tanggal": "2026-08-26",
+    "2026-09-02": {
       "hari": "Rabu",
-      "gambar": "images/rabu.jpg",
-      "isi_ompreng": {
-        "karbohidrat": "Nasi Putih",
-        "lauk_hewani": "Ikan Goreng Bumbu Kuning",
-        "lauk_nabati": "Tahu Isi",
-        "sayur": "Sayur Bayam Bening",
-        "buah": "Jeruk Medan"
-      },
-      "gizi_per_porsi": {
-        "energi_kkal": { "kecil": 430.9, "besar": 705.4 },
-        "protein_g": { "kecil": 16.0, "besar": 27.2 },
-        "lemak_g": { "kecil": 19.1, "besar": 27.0 },
-        "karbohidrat_g": { "kecil": 53.8, "besar": 97.5 },
-        "serat_g": { "kecil": 3.2, "besar": 4.5 }
-      },
-      "jumlah_penerima": 212
+      "foto": "image/menu-2026-09-02.jpg",
+      "isiOmpreng": ["Nasi putih", "Ikan nila goreng", "Tumis buncis wortel", "Jeruk"],
+      "gizi": [
+        { "label": "Energi", "value": "620 kkal" },
+        { "label": "Protein", "value": "24 g" },
+        { "label": "Karbohidrat", "value": "78 g" },
+        { "label": "Lemak", "value": "16 g" }
+      ],
+      "peringatan": "Menu mengandung ikan. Harap perhatikan siswa dengan alergi makanan laut."
     },
-    {
-      "tanggal": "2026-08-27",
+    "2026-09-03": {
       "hari": "Kamis",
-      "gambar": "images/kamis.jpg",
-      "isi_ompreng": {
-        "karbohidrat": "Nasi Putih",
-        "lauk_hewani": "Dimsum Ayam",
-        "lauk_nabati": "Tempe Oreg",
-        "sayur": "Sayur Bening Labu Kuning, Kacang Panjang",
-        "buah": "Jeruk Madu Siam"
-      },
-      "gizi_per_porsi": {
-        "energi_kkal": { "kecil": 448.19, "besar": 736.55 },
-        "protein_g": { "kecil": 15.13, "besar": 25.03 },
-        "lemak_g": { "kecil": 19.04, "besar": 26.58 },
-        "karbohidrat_g": { "kecil": 56.42, "besar": 102.44 },
-        "serat_g": { "kecil": 3.21, "besar": 4.49 }
-      },
-      "jumlah_penerima": 218
+      "foto": "image/menu-2026-09-03.jpg",
+      "isiOmpreng": ["Nasi putih", "Tempe orek", "Sup sayur", "Pepaya"],
+      "gizi": [
+        { "label": "Energi", "value": "580 kkal" },
+        { "label": "Protein", "value": "18 g" },
+        { "label": "Karbohidrat", "value": "84 g" },
+        { "label": "Lemak", "value": "13 g" }
+      ],
+      "peringatan": "Menu mengandung kedelai."
     },
-    {
-      "tanggal": "2026-08-28",
+    "2026-09-04": {
       "hari": "Jumat",
-      "gambar": "images/jumat.jpg",
-      "isi_ompreng": {
-        "karbohidrat": "Nasi Putih",
-        "lauk_hewani": "Ayam Suwir Pedas",
-        "lauk_nabati": "Tahu Goreng",
-        "sayur": "Cah Sawi Putih",
-        "buah": "Apel Merah"
-      },
-      "gizi_per_porsi": {
-        "energi_kkal": { "kecil": 415.6, "besar": 680.1 },
-        "protein_g": { "kecil": 14.0, "besar": 23.8 },
-        "lemak_g": { "kecil": 17.5, "besar": 24.8 },
-        "karbohidrat_g": { "kecil": 53.0, "besar": 96.0 },
-        "serat_g": { "kecil": 2.9, "besar": 4.0 }
-      },
-      "jumlah_penerima": 200
-    },
-    {
-      "tanggal": "2026-08-29",
-      "hari": "Sabtu",
-      "gambar": "images/sabtu.jpg",
-      "isi_ompreng": {
-        "karbohidrat": "Nasi Putih",
-        "lauk_hewani": "Semur Daging",
-        "lauk_nabati": "Tempe Goreng",
-        "sayur": "Sup Sayuran",
-        "buah": "Pepaya"
-      },
-      "gizi_per_porsi": {
-        "energi_kkal": { "kecil": 440.2, "besar": 720.0 },
-        "protein_g": { "kecil": 16.5, "besar": 28.0 },
-        "lemak_g": { "kecil": 20.0, "besar": 28.2 },
-        "karbohidrat_g": { "kecil": 52.5, "besar": 95.0 },
-        "serat_g": { "kecil": 3.0, "besar": 4.1 }
-      },
-      "jumlah_penerima": 195
+      "foto": "image/menu-2026-09-04.jpg",
+      "isiOmpreng": ["Nasi putih", "Ayam suwir kecap", "Capcay", "Pisang", "Susu UHT"],
+      "gizi": [
+        { "label": "Energi", "value": "640 kkal" },
+        { "label": "Protein", "value": "23 g" },
+        { "label": "Karbohidrat", "value": "79 g" },
+        { "label": "Lemak", "value": "17 g" }
+      ],
+      "peringatan": "Menu mengandung produk susu."
     }
-  ]
+  }
 }

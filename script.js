@@ -83,7 +83,14 @@ function tampilkanPeringatan(teks){
 function tampilkanMingguIni(menuMingguan, kunciHariIni, tanggalAktif){
   const ul = document.getElementById('week-list');
   ul.innerHTML = '';
-  const entries = Object.entries(menuMingguan || {}).sort(([a],[b]) => a.localeCompare(b));
+  const entries = Object.entries(menuMingguan || {})
+    .filter(([tanggal]) => tanggal <= kunciHariIni)
+    .sort(([a],[b]) => a.localeCompare(b));
+
+  if (entries.length === 0){
+    ul.innerHTML = '<li style="cursor:default;"><span class="ringkasan">Belum ada menu yang diunggah minggu ini.</span></li>';
+    return;
+  }
   entries.forEach(([tanggal, data]) => {
     const li = document.createElement('li');
     if (tanggal === kunciHariIni) li.classList.add('hari-ini');

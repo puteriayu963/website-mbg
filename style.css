@@ -88,6 +88,20 @@ body{
   color: #A9CFEE;
 }
 
+.kembali-btn{
+  margin-top: 8px;
+  border: none;
+  background: rgba(255,255,255,.15);
+  color: var(--putih);
+  font-family: var(--font-teks);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.kembali-btn:hover{ background: rgba(255,255,255,.25); }
+
 .card__photo{
   margin: 10px 20px 4px;
   border-radius: 16px;
@@ -154,37 +168,69 @@ body{
   font-size: 14.5px;
 }
 
-.panel__gizi{
-  margin: 0; padding: 0;
-  list-style: none;
+.torn-box{
+  border: 1.5px dashed #A9C6DD;
+  border-radius: 4px;
+  padding: 14px 10px;
+  text-align: center;
+  background: var(--putih);
+  clip-path: polygon(0 6px, 6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px));
+}
+.torn-box--accent{ border-color: var(--biru-utama); }
+.torn-box__label{
+  margin: 0 0 8px;
+  font-family: var(--font-judul);
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--biru-tua-2);
+}
+.torn-box__angka{
+  margin: 0;
+  font-family: var(--font-judul);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--biru-utama);
+}
+.torn-box__list{
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 7px;
+  text-align: left;
+}
+.torn-box__list li{
+  display: flex; justify-content: space-between; gap: 6px;
+  font-size: 12.5px;
+}
+.torn-box__list li .nilai{
+  font-weight: 700;
+  color: var(--biru-tua-2);
+  white-space: nowrap;
+}
+
+.gizi-columns{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 10px;
 }
-.panel__gizi li{
-  background: var(--biru-langit);
-  border-radius: 12px;
-  padding: 10px 12px;
+
+#box-penerima{ margin-top: 12px; }
+
+.notice{
+  border-left: 2px solid var(--biru-tua-2);
+  border-right: 2px solid var(--biru-tua-2);
+  padding: 18px 22px;
+  text-align: center;
 }
-.panel__gizi .angka{
-  display: block;
+.notice__title{
+  margin: 0 0 8px;
   font-family: var(--font-judul);
   font-weight: 700;
   font-size: 17px;
-  color: var(--biru-tua-2);
+  color: var(--teks);
 }
-.panel__gizi .label{
-  font-size: 12px;
-  color: var(--teks-lembut);
-}
-
-.alert{
-  background: var(--merah-bg);
-  border: 1px solid #EFC3BC;
-  color: var(--merah);
-  padding: 12px 14px;
-  border-radius: 12px;
+.notice__text{
+  margin: 0;
   font-size: 14px;
+  color: var(--teks-lembut);
   line-height: 1.5;
 }
 
@@ -209,8 +255,22 @@ body{
   font-size: 13px;
   padding: 8px 10px;
   border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background .12s ease;
+}
+.week__list li:hover{
+  background: var(--biru-langit);
 }
 .week__list li.hari-ini{
+  background: #FFF3E0;
+}
+.week__list li.aktif{
+  border-color: var(--biru-utama);
+  background: #E3F2FD;
+}
+.week__list li.aktif.hari-ini{
+  border-color: var(--emas-gelap);
   background: #FFF3E0;
 }
 .week__list .hari{

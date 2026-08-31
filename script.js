@@ -50,17 +50,27 @@ function tampilkanIsiOmpreng(daftar){
   }
 }
 
-function tampilkanGizi(daftar){
-  const ul = document.getElementById('list-gizi');
-  ul.innerHTML = '';
-  (daftar || []).forEach(g => {
-    const li = document.createElement('li');
-    li.innerHTML = `<span class="angka">${g.value}</span><span class="label">${g.label}</span>`;
-    ul.appendChild(li);
-  });
-  if (!daftar || daftar.length === 0){
-    ul.innerHTML = '<li><span class="label">Data gizi belum tersedia.</span></li>';
-  }
+function tampilkanGizi(gizi){
+  const isiKolom = (ul, daftar) => {
+    ul.innerHTML = '';
+    (daftar || []).forEach(g => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${g.label}</span><span class="nilai">${g.value}</span>`;
+      ul.appendChild(li);
+    });
+    if (!daftar || daftar.length === 0){
+      ul.innerHTML = '<li><span>Belum ada data</span></li>';
+    }
+  };
+  isiKolom(document.getElementById('list-gizi-kecil'), gizi && gizi.porsiKecil);
+  isiKolom(document.getElementById('list-gizi-besar'), gizi && gizi.porsiBesar);
+}
+
+function tampilkanPenerimaManfaat(angka){
+  const el = document.getElementById('angka-penerima');
+  el.textContent = (typeof angka === 'number')
+    ? angka.toLocaleString('id-ID')
+    : '–';
 }
 
 function tampilkanPeringatan(teks){
@@ -70,17 +80,56 @@ function tampilkanPeringatan(teks){
     : 'Tidak ada peringatan khusus untuk menu hari ini.';
 }
 
-function tampilkanMingguIni(menuMingguan, kunciHariIni){
+function tampilkanMingguIni(menuMingguan, kunciHariIni, tanggalAktif){
   const ul = document.getElementById('week-list');
   ul.innerHTML = '';
   const entries = Object.entries(menuMingguan || {}).sort(([a],[b]) => a.localeCompare(b));
   entries.forEach(([tanggal, data]) => {
     const li = document.createElement('li');
     if (tanggal === kunciHariIni) li.classList.add('hari-ini');
+    if (tanggal === tanggalAktif) li.classList.add('aktif');
     const ringkasan = (data.isiOmpreng || []).slice(0, 3).join(', ') || 'Belum ada data';
     li.innerHTML = `<span class="hari">${(data.hari || '').slice(0,3)}</span><span class="ringkasan">${ringkasan}</span>`;
+    li.addEventListener('click', () => pilihTanggal(tanggal));
     ul.appendChild(li);
   });
+}
+
+// ====== STATE & NAVIGASI ANTAR HARI ======
+let dataGlobal = null;
+let kunciHariIniGlobal = '';
+
+function pilihTanggal(tanggal){
+  renderUntukTanggal(tanggal);
+}
+
+function renderUntukTanggal(tanggal){
+  if (!dataGlobal) return;
+  const entry = (dataGlobal.menu || {})[tanggal];
+  const tombolKembali = document.getElementById('kembali-hari-ini');
+
+  if (!entry){
+    tampilkanIsiOmpreng([]);
+    tampilkanGizi(null);
+    tampilkanPenerimaManfaat(null);
+    tampilkanPeringatan('');
+    tampilkanFoto(null);
+    document.getElementById('foto-placeholder').querySelector('span').textContent =
+      'Menu untuk tanggal ini belum diunggah';
+  } else {
+    document.getElementById('foto-placeholder').querySelector('span').textContent =
+      'Foto menu belum diunggah';
+    document.getElementById('hari-tanggal').textContent =
+      formatTanggalIndonesia(new Date(tanggal + 'T00:00:00'));
+    tampilkanFoto(entry.foto);
+    tampilkanIsiOmpreng(entry.isiOmpreng);
+    tampilkanGizi(entry.gizi);
+    tampilkanPenerimaManfaat(entry.penerimaManfaat);
+    tampilkanPeringatan(entry.peringatan);
+  }
+
+  tombolKembali.hidden = (tanggal === kunciHariIniGlobal);
+  tampilkanMingguIni(dataGlobal.menu, kunciHariIniGlobal, tanggal);
 }
 
 function pasangTab(){
@@ -99,31 +148,21 @@ function pasangTab(){
 async function init(){
   pasangTab();
 
-  const kunciHariIni = tanggalHariIni();
+  kunciHariIniGlobal = tanggalHariIni();
   document.getElementById('hari-tanggal').textContent = formatTanggalIndonesia(new Date());
+
+  document.getElementById('kembali-hari-ini').addEventListener('click', () => {
+    renderUntukTanggal(kunciHariIniGlobal);
+  });
 
   try{
     const data = await ambilData();
-    const menuHariIni = (data.menu || {})[kunciHariIni];
+    dataGlobal = data;
 
     document.getElementById('dapur-info').textContent = data.dapur || '';
     document.getElementById('footer-dapur').textContent = 'Disiapkan di dapur — ' + (data.dapur || '-');
 
-    if (!menuHariIni){
-      document.getElementById('foto-placeholder').querySelector('span').textContent =
-        'Menu untuk hari ini belum diunggah';
-      tampilkanIsiOmpreng([]);
-      tampilkanGizi([]);
-      tampilkanPeringatan('');
-      tampilkanMingguIni(data.menu, kunciHariIni);
-      return;
-    }
-
-    tampilkanFoto(menuHariIni.foto);
-    tampilkanIsiOmpreng(menuHariIni.isiOmpreng);
-    tampilkanGizi(menuHariIni.gizi);
-    tampilkanPeringatan(menuHariIni.peringatan);
-    tampilkanMingguIni(data.menu, kunciHariIni);
+    renderUntukTanggal(kunciHariIniGlobal);
 
   }catch(err){
     console.error(err);

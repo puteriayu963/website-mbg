@@ -7,54 +7,62 @@
         "Nasi putih",
         "Ayam Kungpao",
         "Cah Sawi Putih",
-        "Pepaya",
-        "Perkedel Tahu"
+        "Perkedel Tahu",
+        "Pepaya"
       ],
-      "penerimaManfaat": 3478,
+      "penerimaManfaat": 3.485,
       "porsi": {
         "kecil": {
           "gizi": [
             {
               "label": "Energi",
-              "value": "450 kkal"
+              "value": "478,4 kkal"
             },
             {
               "label": "Protein",
-              "value": "18 g"
-            },
-            {
-              "label": "Karbohidrat",
-              "value": "60 g"
+              "value": "14,9 g"
             },
             {
               "label": "Lemak",
-              "value": "12 g"
+              "value": "17,3 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "65,2 g"
+            },
+            {
+              "label": "Serat",
+              "value": "2,1 g"
             }
           ],
-          "peringatan": "Harap dikonsumsi segera setelah diterima.",
-          "foto": "image/menu-2026-08-31-kecil.jpg"
+          "peringatan": "Baik Dikonsumsi Sebelum Jam 10.00 WIB.",
+          "foto": "image/menu-2026-08-31-kecil.jpeg"
         },
         "besar": {
           "gizi": [
             {
               "label": "Energi",
-              "value": "650 kkal"
+              "value": "707,9 kkal"
             },
             {
               "label": "Protein",
-              "value": "25 g"
-            },
-            {
-              "label": "Karbohidrat",
-              "value": "80 g"
+              "value": "23 g"
             },
             {
               "label": "Lemak",
-              "value": "18 g"
+              "value": "28,3 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "92,5 g"
+            },
+            {
+              "label": "Serat",
+              "value": "2,4 g"
             }
           ],
-          "peringatan": "Harap dikonsumsi segera setelah diterima.",
-          "foto": "image/menu-2026-08-31-besar.jpg"
+          "peringatan": "Baik Dikonsumsi Sebelum Jam 12.30 WIB.",
+          "foto": "image/menu-2026-08-31-besar.jpeg"
         }
       }
     },
@@ -88,7 +96,7 @@
               "value": "10 g"
             }
           ],
-          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "peringatan": "Baik Dikonsumsi Sebelum Jam 10.00 WIB.",
           "foto": "image/menu-2026-09-01-kecil.jpeg"
         },
         "besar": {
@@ -110,7 +118,7 @@
               "value": "15 g"
             }
           ],
-          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "peringatan": "Baik Dikonsumsi Sebelum Jam 12.30 WIB.",
           "foto": "image/menu-2026-09-01-besar.jpeg"
         }
       }

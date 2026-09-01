@@ -23,46 +23,89 @@
     </div>
   </header>
 
-  <div class="card__photo" id="foto-wrap">
-    <img id="foto-menu" src="" alt="Foto menu hari ini" hidden />
-    <div class="card__photo-placeholder" id="foto-placeholder">
-      <span>Foto menu belum diunggah</span>
-    </div>
+  <div class="porsi-switch">
+    <button class="porsi-arrow" id="porsi-prev" aria-label="Porsi sebelumnya">‹</button>
+    <div class="porsi-label" id="porsi-label">Porsi Kecil</div>
+    <button class="porsi-arrow" id="porsi-next" aria-label="Porsi berikutnya">›</button>
+  </div>
+  <div class="porsi-dots" id="porsi-dots">
+    <span class="dot aktif" data-porsi="kecil"></span>
+    <span class="dot" data-porsi="besar"></span>
   </div>
 
-  <nav class="tabs" id="tabs" role="tablist" aria-label="Detail menu">
-    <button class="tabs__btn" data-tab="isiOmpreng" role="tab" aria-selected="true">Isi Ompreng</button>
-    <button class="tabs__btn" data-tab="gizi" role="tab" aria-selected="false">Gizi</button>
-    <button class="tabs__btn" data-tab="peringatan" role="tab" aria-selected="false">Peringatan</button>
-  </nav>
+  <div class="porsi-viewport" id="porsi-viewport">
+    <div class="porsi-track" id="porsi-track">
 
-  <section class="panel" id="panel-isiOmpreng" role="tabpanel">
-    <ul class="panel__list" id="list-isiOmpreng"></ul>
-    <div class="torn-box torn-box--accent" id="box-penerima">
-      <p class="torn-box__label">Penerima Manfaat</p>
-      <p class="torn-box__angka" id="angka-penerima">–</p>
-    </div>
-  </section>
+      <!-- ==== SLIDE: PORSI KECIL ==== -->
+      <section class="porsi-slide" data-porsi="kecil">
+        <div class="card__photo card__photo--slide" id="foto-wrap-kecil">
+          <img id="foto-menu-kecil" src="" alt="Foto menu porsi kecil" hidden />
+          <div class="card__photo-placeholder" id="foto-placeholder-kecil"></div>
+        </div>
+        <p class="torn-box__jam torn-box__jam--slide" id="jam-kecil"></p>
 
-  <section class="panel" id="panel-gizi" role="tabpanel" hidden>
-    <div class="gizi-columns">
-      <div class="torn-box">
-        <p class="torn-box__label">Porsi Kecil</p>
-        <ul class="torn-box__list" id="list-gizi-kecil"></ul>
-      </div>
-      <div class="torn-box torn-box--accent">
-        <p class="torn-box__label">Porsi Besar</p>
-        <ul class="torn-box__list" id="list-gizi-besar"></ul>
-      </div>
-    </div>
-  </section>
+        <nav class="tabs" data-tabgroup="kecil">
+          <button class="tabs__btn" data-tab="isiOmpreng" aria-selected="true">Isi Ompreng</button>
+          <button class="tabs__btn" data-tab="gizi" aria-selected="false">Gizi</button>
+          <button class="tabs__btn" data-tab="peringatan" aria-selected="false">Peringatan</button>
+        </nav>
 
-  <section class="panel" id="panel-peringatan" role="tabpanel" hidden>
-    <div class="notice">
-      <p class="notice__title">Peringatan</p>
-      <p class="notice__text" id="teks-peringatan"></p>
+        <section class="panel" data-panel="isiOmpreng">
+          <ul class="panel__list" id="list-isiOmpreng-kecil"></ul>
+          <div class="torn-box torn-box--accent" id="box-penerima-kecil">
+            <p class="torn-box__label">Penerima Manfaat</p>
+            <p class="torn-box__angka" id="angka-penerima-kecil">–</p>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="gizi" hidden>
+          <ul class="panel__list panel__list--gizi" id="list-gizi-kecil"></ul>
+        </section>
+
+        <section class="panel" data-panel="peringatan" hidden>
+          <div class="notice">
+            <p class="notice__title">Peringatan</p>
+            <p class="notice__text" id="teks-peringatan-kecil"></p>
+          </div>
+        </section>
+      </section>
+
+      <!-- ==== SLIDE: PORSI BESAR ==== -->
+      <section class="porsi-slide" data-porsi="besar">
+        <div class="card__photo card__photo--slide" id="foto-wrap-besar">
+          <img id="foto-menu-besar" src="" alt="Foto menu porsi besar" hidden />
+          <div class="card__photo-placeholder" id="foto-placeholder-besar"></div>
+        </div>
+        <p class="torn-box__jam torn-box__jam--slide" id="jam-besar"></p>
+
+        <nav class="tabs" data-tabgroup="besar">
+          <button class="tabs__btn" data-tab="isiOmpreng" aria-selected="true">Isi Ompreng</button>
+          <button class="tabs__btn" data-tab="gizi" aria-selected="false">Gizi</button>
+          <button class="tabs__btn" data-tab="peringatan" aria-selected="false">Peringatan</button>
+        </nav>
+
+        <section class="panel" data-panel="isiOmpreng">
+          <ul class="panel__list" id="list-isiOmpreng-besar"></ul>
+          <div class="torn-box torn-box--accent" id="box-penerima-besar">
+            <p class="torn-box__label">Penerima Manfaat</p>
+            <p class="torn-box__angka" id="angka-penerima-besar">–</p>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="gizi" hidden>
+          <ul class="panel__list panel__list--gizi" id="list-gizi-besar"></ul>
+        </section>
+
+        <section class="panel" data-panel="peringatan" hidden>
+          <div class="notice">
+            <p class="notice__title">Peringatan</p>
+            <p class="notice__text" id="teks-peringatan-besar"></p>
+          </div>
+        </section>
+      </section>
+
     </div>
-  </section>
+  </div>
 
   <section class="week">
     <h2 class="week__title">Menu minggu ini</h2>

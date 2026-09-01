@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Preview - Menu MBG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --biru-langit: #EAF6FF;
+  --biru-langit-2: #D3ECFB;
+  --biru-utama: #2E86C1;
+  --biru-tua: #163A5F;
+  --biru-tua-2: #1F4E79;
+  --emas: #FFB84D;
+  --emas-gelap: #E0932A;
+  --merah: #C0392B;
+  --merah-bg: #F9E4E1;
+  --teks: #1F2A37;
+  --teks-lembut: #5B6B7A;
+  --putih: #FFFFFF;
+  --radius: 20px;
+  --font-judul: 'Baloo 2', system-ui, sans-serif;
+  --font-teks: 'Inter', system-ui, sans-serif;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-teks);
+  color: var(--teks);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255,255,255,.5), transparent 45%),
+    linear-gradient(160deg, var(--biru-langit) 0%, var(--biru-langit-2) 55%, #BFE0F7 100%);
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px 56px;
+}
+
+.card{
+  width: 100%;
+  max-width: 420px;
+  background: var(--putih);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 24px 48px -20px rgba(22, 58, 95, .35);
+  position: relative;
+}
+
+/* efek tepi bergerigi ala tiket/label ompreng, di bawah header */
+.card__header{
+  background: linear-gradient(135deg, var(--biru-tua) 0%, var(--biru-tua-2) 100%);
+  color: var(--putih);
+  padding: 22px 20px 30px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+}
+.card__header::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 14px;
+  background:
+    radial-gradient(circle at 10px 0, transparent 9px, var(--biru-tua-2) 9.5px) 0 -7px / 20px 14px repeat-x;
+}
+
+.card__logo{
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.card__eyebrow{
+  margin: 0;
+  font-size: 13px;
+  color: #BFE0F7;
+  font-weight: 500;
+}
+.card__sppg{
+  margin: 2px 0 0;
+  font-family: var(--font-judul);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.card__day{
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #CFE6FA;
+}
+
+.kembali-btn{
+  margin-top: 8px;
+  border: none;
+  background: rgba(255,255,255,.15);
+  color: var(--putih);
+  font-family: var(--font-teks);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.kembali-btn:hover{ background: rgba(255,255,255,.25); }
+
+.card__photo{
+  margin: 10px 20px 4px;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--biru-tua-2), var(--biru-tua));
+  position: relative;
+}
+.card__photo img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.card__photo-placeholder{
+  display: none;
+}
+
+.tabs{
+  display: flex;
+  gap: 6px;
+  margin: 18px 20px 0;
+  background: var(--biru-langit);
+  padding: 5px;
+  border-radius: 999px;
+}
+.tabs__btn{
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 9px 6px;
+  border-radius: 999px;
+  font-family: var(--font-teks);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--biru-tua-2);
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.tabs__btn[aria-selected="true"]{
+  background: var(--biru-utama);
+  color: var(--putih);
+}
+
+.panel{ padding: 16px 20px 4px; }
+
+.panel__list{
+  margin: 0; padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.panel__list li{
+  padding: 10px 14px;
+  background: var(--biru-langit);
+  border-radius: 12px;
+  font-size: 14.5px;
+}
+
+.torn-box{
+  border: 1.5px dashed #A9C6DD;
+  border-radius: 4px;
+  padding: 14px 10px;
+  text-align: center;
+  background: var(--putih);
+  clip-path: polygon(0 6px, 6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px));
+}
+.torn-box--accent{ border-color: var(--biru-utama); }
+.torn-box__label{
+  margin: 0 0 8px;
+  font-family: var(--font-judul);
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--biru-tua-2);
+}
+.torn-box__jam{
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--biru-langit);
+  color: var(--biru-tua-2);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.torn-box__angka{
+  margin: 0;
+  font-family: var(--font-judul);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--biru-utama);
+}
+.torn-box__list{
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 7px;
+  text-align: left;
+}
+.torn-box__list li{
+  display: flex; justify-content: space-between; gap: 6px;
+  font-size: 12.5px;
+}
+.torn-box__list li .nilai{
+  font-weight: 700;
+  color: var(--biru-tua-2);
+  white-space: nowrap;
+}
+
+.gizi-columns{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+#box-penerima{ margin-top: 12px; }
+
+.notice{
+  border-left: 3px solid var(--emas-gelap);
+  border-right: 3px solid var(--emas-gelap);
+  background: #FFF8EC;
+  padding: 18px 22px;
+  text-align: center;
+  border-radius: 4px;
+}
+.notice__title{
+  margin: 0 0 8px;
+  font-family: var(--font-judul);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--teks);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.notice__title::before{
+  content: "⚠";
+  color: var(--emas-gelap);
+}
+.notice__text{
+  margin: 0;
+  font-size: 14px;
+  color: var(--teks-lembut);
+  line-height: 1.5;
+}
+
+.week{ padding: 20px 20px 4px; }
+.week__title{
+  font-family: var(--font-judul);
+  font-size: 15px;
+  color: var(--biru-tua-2);
+  margin: 0 0 10px;
+}
+.week__list{
+  margin: 0; padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.week__list li{
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 13px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background .12s ease;
+}
+.week__list li:hover{
+  background: var(--biru-langit);
+}
+.week__list li.hari-ini{
+  background: #FFF3E0;
+}
+.week__list li.aktif{
+  border-color: var(--biru-utama);
+  background: #E3F2FD;
+}
+.week__list li.aktif.hari-ini{
+  border-color: var(--emas-gelap);
+  background: #FFF3E0;
+}
+.week__list .hari{
+  font-weight: 700;
+  color: var(--biru-tua-2);
+  width: 46px;
+  flex-shrink: 0;
+}
+.week__list .ringkasan{
+  color: var(--teks-lembut);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card__footer{
+  margin-top: 18px;
+  padding: 14px 20px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--teks-lembut);
+  border-top: 1px dashed #D8E6F0;
+}
+
+@media (prefers-reduced-motion: no-preference){
+  .panel{ animation: masuk .18s ease; }
+  @keyframes masuk{
+    from{ opacity: 0; transform: translateY(4px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ====== SWITCH PORSI KECIL / BESAR ====== */
+.porsi-switch{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 16px 20px 6px;
+}
+.porsi-arrow{
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--biru-langit);
+  color: var(--biru-tua-2);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.porsi-arrow:hover{ background: var(--biru-langit-2); }
+.porsi-label{
+  font-family: var(--font-judul);
+  font-weight: 700;
+  font-size: 15.5px;
+  color: var(--biru-tua-2);
+  min-width: 110px;
+  text-align: center;
+}
+.porsi-dots{
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.porsi-dots .dot{
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #C7DCEC;
+  cursor: pointer;
+}
+.porsi-dots .dot.aktif{
+  background: var(--biru-utama);
+  width: 16px;
+  border-radius: 4px;
+}
+
+/* ====== SLIDER (swipe) ====== */
+.porsi-viewport{
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.porsi-track{
+  display: flex;
+  width: 200%;
+  transition: transform .28s ease;
+}
+.porsi-slide{
+  width: 50%;
+  flex-shrink: 0;
+  padding: 4px 0 0;
+  box-sizing: border-box;
+}
+
+.panel__list--gizi li{
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.panel__list--gizi li .nilai{
+  font-weight: 700;
+  color: var(--biru-tua-2);
+  white-space: nowrap;
+}
+
+.card__photo--slide{
+  margin: 0 20px 12px;
+}
+
+.torn-box__jam--slide{
+  display: block;
+  width: fit-content;
+  margin: 0 20px 10px;
+}
+
+/* ====== MENU MINGGU INI (kotak hari, tanpa isi menu) ====== */
+.week__list{
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.week__list::-webkit-scrollbar{ display: none; }
+.week__list li{
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--biru-langit-2);
+  color: var(--biru-tua-2);
+  font-family: var(--font-judul);
+  font-weight: 700;
+  font-size: 12.5px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease;
+}
+.week__list li .ringkasan{ display: none; }
+.week__list li:hover{ background: var(--biru-langit); }
+.week__list li.hari-ini{
+  background: var(--emas);
+  color: var(--biru-tua);
+}
+.week__list li.aktif{
+  transform: scale(1.12);
+  box-shadow: 0 6px 14px -6px rgba(46,134,193,.5);
+}
+.card__logo--preview{
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #1B3B6F;
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-judul);
+  font-weight:800;
+  font-size:12px;
+  flex-shrink:0;
+}
+.preview-note{
+  max-width:420px;
+  margin: 0 auto 14px;
+  text-align:center;
+  font-family: var(--font-teks);
+  font-size:12px;
+  color:#5B6B7A;
+}
+</style>
+</head>
+<body>
+
+<p class="preview-note">Preview — tiap slide sekarang punya foto sendiri. Klik ‹ › atau titik buat ganti porsi</p>
+
+<main class="card" id="card">
+
+  <header class="card__header">
+    <div class="card__logo--preview">BGN</div>
+    <div class="card__title">
+      <p class="card__eyebrow">Makan Bergizi Gratis</p>
+      <h1 class="card__sppg" id="nama-sppg">Memuat…</h1>
+      <p class="card__day" id="hari-tanggal">–</p>
+      <button class="kembali-btn" id="kembali-hari-ini" hidden>← Kembali ke hari ini</button>
+    </div>
+  </header>
+
+  <div class="porsi-switch">
+    <button class="porsi-arrow" id="porsi-prev" aria-label="Porsi sebelumnya">‹</button>
+    <div class="porsi-label" id="porsi-label">Porsi Kecil</div>
+    <button class="porsi-arrow" id="porsi-next" aria-label="Porsi berikutnya">›</button>
+  </div>
+  <div class="porsi-dots" id="porsi-dots">
+    <span class="dot aktif" data-porsi="kecil"></span>
+    <span class="dot" data-porsi="besar"></span>
+  </div>
+
+  <div class="porsi-viewport" id="porsi-viewport">
+    <div class="porsi-track" id="porsi-track">
+
+      <section class="porsi-slide" data-porsi="kecil">
+        <div class="card__photo card__photo--slide" id="foto-wrap-kecil">
+          <img id="foto-menu-kecil" src="" alt="Foto menu porsi kecil" hidden />
+          <div class="card__photo-placeholder" id="foto-placeholder-kecil"></div>
+        </div>
+        <p class="torn-box__jam torn-box__jam--slide" id="jam-kecil"></p>
+        <nav class="tabs" data-tabgroup="kecil">
+          <button class="tabs__btn" data-tab="isiOmpreng" aria-selected="true">Isi Ompreng</button>
+          <button class="tabs__btn" data-tab="gizi" aria-selected="false">Gizi</button>
+          <button class="tabs__btn" data-tab="peringatan" aria-selected="false">Peringatan</button>
+        </nav>
+        <section class="panel" data-panel="isiOmpreng">
+          <ul class="panel__list" id="list-isiOmpreng-kecil"></ul>
+          <div class="torn-box torn-box--accent" id="box-penerima-kecil">
+            <p class="torn-box__label">Penerima Manfaat</p>
+            <p class="torn-box__angka" id="angka-penerima-kecil">–</p>
+          </div>
+        </section>
+        <section class="panel" data-panel="gizi" hidden>
+          <ul class="panel__list panel__list--gizi" id="list-gizi-kecil"></ul>
+        </section>
+        <section class="panel" data-panel="peringatan" hidden>
+          <div class="notice">
+            <p class="notice__title">Peringatan</p>
+            <p class="notice__text" id="teks-peringatan-kecil"></p>
+          </div>
+        </section>
+      </section>
+
+      <section class="porsi-slide" data-porsi="besar">
+        <div class="card__photo card__photo--slide" id="foto-wrap-besar">
+          <img id="foto-menu-besar" src="" alt="Foto menu porsi besar" hidden />
+          <div class="card__photo-placeholder" id="foto-placeholder-besar"></div>
+        </div>
+        <p class="torn-box__jam torn-box__jam--slide" id="jam-besar"></p>
+        <nav class="tabs" data-tabgroup="besar">
+          <button class="tabs__btn" data-tab="isiOmpreng" aria-selected="true">Isi Ompreng</button>
+          <button class="tabs__btn" data-tab="gizi" aria-selected="false">Gizi</button>
+          <button class="tabs__btn" data-tab="peringatan" aria-selected="false">Peringatan</button>
+        </nav>
+        <section class="panel" data-panel="isiOmpreng">
+          <ul class="panel__list" id="list-isiOmpreng-besar"></ul>
+          <div class="torn-box torn-box--accent" id="box-penerima-besar">
+            <p class="torn-box__label">Penerima Manfaat</p>
+            <p class="torn-box__angka" id="angka-penerima-besar">–</p>
+          </div>
+        </section>
+        <section class="panel" data-panel="gizi" hidden>
+          <ul class="panel__list panel__list--gizi" id="list-gizi-besar"></ul>
+        </section>
+        <section class="panel" data-panel="peringatan" hidden>
+          <div class="notice">
+            <p class="notice__title">Peringatan</p>
+            <p class="notice__text" id="teks-peringatan-besar"></p>
+          </div>
+        </section>
+      </section>
+
+    </div>
+  </div>
+
+  <section class="week">
+    <h2 class="week__title">Menu minggu ini</h2>
+    <ul class="week__list" id="week-list"></ul>
+  </section>
+
+  <footer class="card__footer">
+    <span id="footer-dapur">Disiapkan di dapur —</span>
+  </footer>
+
+</main>
+
+<script>
+const DATA_CONTOH = {
+  "dapur": "SPPG Kota Malang Blimbing Arjosari",
+  "menu": {
+    "2026-08-31": {
+      "hari": "Senin",
+      "isiOmpreng": [
+        "Nasi putih",
+        "Ayam Kungpao",
+        "Cah Sawi Putih",
+        "Pepaya",
+        "Perkedel Tahu"
+      ],
+      "penerimaManfaat": 3478,
+      "porsi": {
+        "kecil": {
+          "jam": "09.00 WIB",
+          "gizi": [
+            {
+              "label": "Energi",
+              "value": "450 kkal"
+            },
+            {
+              "label": "Protein",
+              "value": "18 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "60 g"
+            },
+            {
+              "label": "Lemak",
+              "value": "12 g"
+            }
+          ],
+          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "foto": "image/menu-2026-08-31-kecil.jpg"
+        },
+        "besar": {
+          "jam": "12.00 WIB",
+          "gizi": [
+            {
+              "label": "Energi",
+              "value": "650 kkal"
+            },
+            {
+              "label": "Protein",
+              "value": "25 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "80 g"
+            },
+            {
+              "label": "Lemak",
+              "value": "18 g"
+            }
+          ],
+          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "foto": "image/menu-2026-08-31-besar.jpg"
+        }
+      }
+    },
+    "2026-09-01": {
+      "hari": "Selasa",
+      "isiOmpreng": [
+        "Nasi putih",
+        "Telur bumbu bali",
+        "Sayur bayam bening",
+        "Semangka"
+      ],
+      "penerimaManfaat": 3502,
+      "porsi": {
+        "kecil": {
+          "jam": "09.00 WIB",
+          "gizi": [
+            {
+              "label": "Energi",
+              "value": "420 kkal"
+            },
+            {
+              "label": "Protein",
+              "value": "15 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "58 g"
+            },
+            {
+              "label": "Lemak",
+              "value": "10 g"
+            }
+          ],
+          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "foto": "image/menu-2026-09-01-kecil.jpg"
+        },
+        "besar": {
+          "jam": "12.00 WIB",
+          "gizi": [
+            {
+              "label": "Energi",
+              "value": "600 kkal"
+            },
+            {
+              "label": "Protein",
+              "value": "20 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "82 g"
+            },
+            {
+              "label": "Lemak",
+              "value": "15 g"
+            }
+          ],
+          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "foto": "image/menu-2026-09-01-besar.jpg"
+        }
+      }
+    },
+    "2026-09-02": {
+      "hari": "Rabu",
+      "isiOmpreng": [
+        "Nasi putih",
+        "Ikan nila goreng",
+        "Tumis buncis wortel",
+        "Jeruk"
+      ],
+      "penerimaManfaat": 3491,
+      "porsi": {
+        "kecil": {
+          "jam": "09.00 WIB",
+          "gizi": [
+            {
+              "label": "Energi",
+              "value": "440 kkal"
+            },
+            {
+              "label": "Protein",
+              "value": "17 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "56 g"
+            },
+            {
+              "label": "Lemak",
+              "value": "11 g"
+            }
+          ],
+          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "foto": "image/menu-2026-09-02-kecil.jpg"
+        },
+        "besar": {
+          "jam": "12.00 WIB",
+          "gizi": [
+            {
+              "label": "Energi",
+              "value": "620 kkal"
+            },
+            {
+              "label": "Protein",
+              "value": "24 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "78 g"
+            },
+            {
+              "label": "Lemak",
+              "value": "16 g"
+            }
+          ],
+          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "foto": "image/menu-2026-09-02-besar.jpg"
+        }
+      }
+    },
+    "2026-09-03": {
+      "hari": "Kamis",
+      "isiOmpreng": [
+        "Nasi putih",
+        "Tempe orek",
+        "Sup sayur",
+        "Pepaya"
+      ],
+      "penerimaManfaat": 3465,
+      "porsi": {
+        "kecil": {
+          "jam": "09.00 WIB",
+          "gizi": [
+            {
+              "label": "Energi",
+              "value": "410 kkal"
+            },
+            {
+              "label": "Protein",
+              "value": "13 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "60 g"
+            },
+            {
+              "label": "Lemak",
+              "value": "9 g"
+            }
+          ],
+          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "foto": "image/menu-2026-09-03-kecil.jpg"
+        },
+        "besar": {
+          "jam": "12.00 WIB",
+          "gizi": [
+            {
+              "label": "Energi",
+              "value": "580 kkal"
+            },
+            {
+              "label": "Protein",
+              "value": "18 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "84 g"
+            },
+            {
+              "label": "Lemak",
+              "value": "13 g"
+            }
+          ],
+          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "foto": "image/menu-2026-09-03-besar.jpg"
+        }
+      }
+    },
+    "2026-09-04": {
+      "hari": "Jumat",
+      "isiOmpreng": [
+        "Nasi putih",
+        "Ayam suwir kecap",
+        "Capcay",
+        "Pisang",
+        "Susu UHT"
+      ],
+      "penerimaManfaat": 3510,
+      "porsi": {
+        "kecil": {
+          "jam": "09.00 WIB",
+          "gizi": [
+            {
+              "label": "Energi",
+              "value": "430 kkal"
+            },
+            {
+              "label": "Protein",
+              "value": "16 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "59 g"
+            },
+            {
+              "label": "Lemak",
+              "value": "11 g"
+            }
+          ],
+          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "foto": "image/menu-2026-09-04-kecil.jpg"
+        },
+        "besar": {
+          "jam": "12.00 WIB",
+          "gizi": [
+            {
+              "label": "Energi",
+              "value": "640 kkal"
+            },
+            {
+              "label": "Protein",
+              "value": "23 g"
+            },
+            {
+              "label": "Karbohidrat",
+              "value": "79 g"
+            },
+            {
+              "label": "Lemak",
+              "value": "17 g"
+            }
+          ],
+          "peringatan": "Harap dikonsumsi segera setelah diterima.",
+          "foto": "image/menu-2026-09-04-besar.jpg"
+        }
+      }
+    }
+  }
+};
+const HARI_INI_PALSU = '2026-08-31';
+const NAMA_HARI = ['Minggu','Senin','Selasa','Rabu','Kamis',"Jum'at",'Sabtu'];
+const NAMA_BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+
+function formatTanggalIndonesia(d){
+  return `${NAMA_HARI[d.getDay()]}, ${d.getDate()} ${NAMA_BULAN[d.getMonth()]} ${d.getFullYear()}`;
+}
+function tampilkanFoto(idImg, idPlaceholder, pathFoto){
+  document.getElementById(idImg).hidden = true;
+  document.getElementById(idPlaceholder).hidden = false;
+}
+function isiListMakanan(idUl, daftar){
+  const ul = document.getElementById(idUl);
+  ul.innerHTML = '';
+  (daftar || []).forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    ul.appendChild(li);
+  });
+}
+function isiPenerimaManfaat(idEl, angka){
+  document.getElementById(idEl).textContent = (typeof angka === 'number') ? angka.toLocaleString('id-ID') : '–';
+}
+function isiGizi(idUl, daftar){
+  const ul = document.getElementById(idUl);
+  ul.innerHTML = '';
+  (daftar || []).forEach(g => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span>${g.label}</span><span class="nilai">${g.value}</span>`;
+    ul.appendChild(li);
+  });
+}
+function isiJam(idEl, jam){ document.getElementById(idEl).textContent = jam || ''; }
+function isiPeringatan(idEl, teks){ document.getElementById(idEl).textContent = teks || '-'; }
+function tampilkanSatuPorsi(porsiKey, entry){
+  const dataPorsi = entry.porsi && entry.porsi[porsiKey];
+  tampilkanFoto('foto-menu-' + porsiKey, 'foto-placeholder-' + porsiKey, dataPorsi && dataPorsi.foto);
+  isiListMakanan('list-isiOmpreng-' + porsiKey, entry.isiOmpreng);
+  isiPenerimaManfaat('angka-penerima-' + porsiKey, entry.penerimaManfaat);
+  isiJam('jam-' + porsiKey, dataPorsi && dataPorsi.jam);
+  isiGizi('list-gizi-' + porsiKey, dataPorsi && dataPorsi.gizi);
+  isiPeringatan('teks-peringatan-' + porsiKey, dataPorsi && dataPorsi.peringatan);
+}
+function tampilkanMingguIni(menuMingguan, kunciHariIni, tanggalAktif){
+  const ul = document.getElementById('week-list');
+  ul.innerHTML = '';
+  const entries = Object.entries(menuMingguan || {})
+    .filter(([tanggal]) => tanggal <= kunciHariIni)
+    .sort(([a],[b]) => a.localeCompare(b));
+  entries.forEach(([tanggal, data]) => {
+    const li = document.createElement('li');
+    if (tanggal === kunciHariIni) li.classList.add('hari-ini');
+    if (tanggal === tanggalAktif) li.classList.add('aktif');
+    li.textContent = (data.hari || '').slice(0, 3);
+    li.addEventListener('click', () => renderUntukTanggal(tanggal));
+    ul.appendChild(li);
+  });
+}
+function pasangTab(){
+  document.querySelectorAll('.tabs').forEach(nav => {
+    const slide = nav.closest('.porsi-slide');
+    nav.querySelectorAll('.tabs__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        nav.querySelectorAll('.tabs__btn').forEach(b => b.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
+        slide.querySelectorAll('.panel').forEach(p => p.hidden = true);
+        slide.querySelector(`.panel[data-panel="${btn.dataset.tab}"]`).hidden = false;
+      });
+    });
+  });
+}
+let indexPorsi = 0;
+const NAMA_PORSI = ['kecil', 'besar'];
+const LABEL_PORSI = { kecil: 'Porsi Kecil', besar: 'Porsi Besar' };
+function pindahKeSlide(index){
+  indexPorsi = Math.max(0, Math.min(1, index));
+  document.getElementById('porsi-track').style.transform = `translateX(-${indexPorsi * 50}%)`;
+  document.getElementById('porsi-label').textContent = LABEL_PORSI[NAMA_PORSI[indexPorsi]];
+  document.querySelectorAll('.porsi-dots .dot').forEach((dot, i) => dot.classList.toggle('aktif', i === indexPorsi));
+}
+function pasangSlider(){
+  document.getElementById('porsi-prev').addEventListener('click', () => pindahKeSlide(indexPorsi - 1));
+  document.getElementById('porsi-next').addEventListener('click', () => pindahKeSlide(indexPorsi + 1));
+  document.querySelectorAll('.porsi-dots .dot').forEach((dot, i) => dot.addEventListener('click', () => pindahKeSlide(i)));
+  const viewport = document.getElementById('porsi-viewport');
+  let xMulai = null;
+  viewport.addEventListener('touchstart', (e) => { xMulai = e.touches[0].clientX; }, { passive: true });
+  viewport.addEventListener('touchend', (e) => {
+    if (xMulai === null) return;
+    const selisih = e.changedTouches[0].clientX - xMulai;
+    if (selisih > 50) pindahKeSlide(indexPorsi - 1);
+    else if (selisih < -50) pindahKeSlide(indexPorsi + 1);
+    xMulai = null;
+  });
+}
+function renderUntukTanggal(tanggal){
+  const entry = DATA_CONTOH.menu[tanggal];
+  document.getElementById('kembali-hari-ini').hidden = (tanggal === HARI_INI_PALSU);
+  document.getElementById('hari-tanggal').textContent = formatTanggalIndonesia(new Date(tanggal + 'T00:00:00'));
+  tampilkanSatuPorsi('kecil', entry);
+  tampilkanSatuPorsi('besar', entry);
+  tampilkanMingguIni(DATA_CONTOH.menu, HARI_INI_PALSU, tanggal);
+}
+pasangTab();
+pasangSlider();
+pindahKeSlide(0);
+document.getElementById('kembali-hari-ini').addEventListener('click', () => renderUntukTanggal(HARI_INI_PALSU));
+document.getElementById('nama-sppg').textContent = DATA_CONTOH.dapur;
+document.getElementById('footer-dapur').textContent = 'Disiapkan di dapur — ' + DATA_CONTOH.dapur;
+renderUntukTanggal(HARI_INI_PALSU);
+</script>
+</body>
+</html>

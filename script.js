@@ -24,9 +24,9 @@ async function ambilData(){
   return res.json();
 }
 
-function tampilkanFoto(pathFoto){
-  const img = document.getElementById('foto-menu');
-  const placeholder = document.getElementById('foto-placeholder');
+function tampilkanFoto(idImg, idPlaceholder, pathFoto){
+  const img = document.getElementById(idImg);
+  const placeholder = document.getElementById(idPlaceholder);
   if (!pathFoto){
     img.hidden = true;
     placeholder.hidden = false;
@@ -37,8 +37,8 @@ function tampilkanFoto(pathFoto){
   img.src = pathFoto;
 }
 
-function tampilkanIsiOmpreng(daftar){
-  const ul = document.getElementById('list-isiOmpreng');
+function isiListMakanan(idUl, daftar){
+  const ul = document.getElementById(idUl);
   ul.innerHTML = '';
   (daftar || []).forEach(item => {
     const li = document.createElement('li');
@@ -46,38 +46,48 @@ function tampilkanIsiOmpreng(daftar){
     ul.appendChild(li);
   });
   if (!daftar || daftar.length === 0){
-    ul.innerHTML = '<li>Belum ada data isi ompreng untuk hari ini.</li>';
+    ul.innerHTML = '<li>Belum ada data isi ompreng.</li>';
   }
 }
 
-function tampilkanGizi(gizi){
-  const isiKolom = (ul, daftar) => {
-    ul.innerHTML = '';
-    (daftar || []).forEach(g => {
-      const li = document.createElement('li');
-      li.innerHTML = `<span>${g.label}</span><span class="nilai">${g.value}</span>`;
-      ul.appendChild(li);
-    });
-    if (!daftar || daftar.length === 0){
-      ul.innerHTML = '<li><span>Belum ada data</span></li>';
-    }
-  };
-  isiKolom(document.getElementById('list-gizi-kecil'), gizi && gizi.porsiKecil);
-  isiKolom(document.getElementById('list-gizi-besar'), gizi && gizi.porsiBesar);
+function isiPenerimaManfaat(idEl, angka){
+  document.getElementById(idEl).textContent =
+    (typeof angka === 'number') ? angka.toLocaleString('id-ID') : '–';
 }
 
-function tampilkanPenerimaManfaat(angka){
-  const el = document.getElementById('angka-penerima');
-  el.textContent = (typeof angka === 'number')
-    ? angka.toLocaleString('id-ID')
-    : '–';
+function isiGizi(idUl, daftar){
+  const ul = document.getElementById(idUl);
+  ul.innerHTML = '';
+  (daftar || []).forEach(g => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span>${g.label}</span><span class="nilai">${g.value}</span>`;
+    ul.appendChild(li);
+  });
+  if (!daftar || daftar.length === 0){
+    ul.innerHTML = '<li><span>Belum ada data gizi</span></li>';
+  }
 }
 
-function tampilkanPeringatan(teks){
-  const el = document.getElementById('teks-peringatan');
-  el.textContent = teks && teks.trim().length > 0
-    ? teks
-    : 'Tidak ada peringatan khusus untuk menu hari ini.';
+function isiJam(idEl, jam){
+  const el = document.getElementById(idEl);
+  el.textContent = jam || '';
+  el.style.display = jam ? 'inline-block' : 'none';
+}
+
+function isiPeringatan(idEl, teks){
+  document.getElementById(idEl).textContent =
+    (teks && teks.trim().length > 0) ? teks : 'Tidak ada peringatan khusus untuk menu hari ini.';
+}
+
+function tampilkanSatuPorsi(porsiKey, entry){
+  const dataPorsi = entry.porsi && entry.porsi[porsiKey];
+
+  tampilkanFoto('foto-menu-' + porsiKey, 'foto-placeholder-' + porsiKey, dataPorsi && dataPorsi.foto);
+  isiListMakanan('list-isiOmpreng-' + porsiKey, entry.isiOmpreng);
+  isiPenerimaManfaat('angka-penerima-' + porsiKey, entry.penerimaManfaat);
+  isiJam('jam-' + porsiKey, dataPorsi && dataPorsi.jam);
+  isiGizi('list-gizi-' + porsiKey, dataPorsi && dataPorsi.gizi);
+  isiPeringatan('teks-peringatan-' + porsiKey, dataPorsi && dataPorsi.peringatan);
 }
 
 function tampilkanMingguIni(menuMingguan, kunciHariIni, tanggalAktif){
@@ -88,17 +98,67 @@ function tampilkanMingguIni(menuMingguan, kunciHariIni, tanggalAktif){
     .sort(([a],[b]) => a.localeCompare(b));
 
   if (entries.length === 0){
-    ul.innerHTML = '<li style="cursor:default;"><span class="ringkasan">Belum ada menu yang diunggah minggu ini.</span></li>';
+    ul.innerHTML = '<li style="width:auto;cursor:default;">Belum ada menu diunggah</li>';
     return;
   }
+
   entries.forEach(([tanggal, data]) => {
     const li = document.createElement('li');
     if (tanggal === kunciHariIni) li.classList.add('hari-ini');
     if (tanggal === tanggalAktif) li.classList.add('aktif');
-    const ringkasan = (data.isiOmpreng || []).slice(0, 3).join(', ') || 'Belum ada data';
-    li.innerHTML = `<span class="hari">${(data.hari || '').slice(0,3)}</span><span class="ringkasan">${ringkasan}</span>`;
-    li.addEventListener('click', () => pilihTanggal(tanggal));
+    li.textContent = (data.hari || '').slice(0, 3);
+    li.addEventListener('click', () => renderUntukTanggal(tanggal));
     ul.appendChild(li);
+  });
+}
+
+function pasangTab(){
+  document.querySelectorAll('.tabs').forEach(nav => {
+    const grup = nav.dataset.tabgroup;
+    const slide = nav.closest('.porsi-slide');
+    nav.querySelectorAll('.tabs__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        nav.querySelectorAll('.tabs__btn').forEach(b => b.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
+        slide.querySelectorAll('.panel').forEach(p => p.hidden = true);
+        slide.querySelector(`.panel[data-panel="${btn.dataset.tab}"]`).hidden = false;
+      });
+    });
+  });
+}
+
+// ====== SLIDER PORSI KECIL / BESAR ======
+let indexPorsi = 0; // 0 = kecil, 1 = besar
+const NAMA_PORSI = ['kecil', 'besar'];
+const LABEL_PORSI = { kecil: 'Porsi Kecil', besar: 'Porsi Besar' };
+
+function pindahKeSlide(index){
+  indexPorsi = Math.max(0, Math.min(1, index));
+  const track = document.getElementById('porsi-track');
+  track.style.transform = `translateX(-${indexPorsi * 50}%)`;
+  document.getElementById('porsi-label').textContent = LABEL_PORSI[NAMA_PORSI[indexPorsi]];
+  document.querySelectorAll('.porsi-dots .dot').forEach((dot, i) => {
+    dot.classList.toggle('aktif', i === indexPorsi);
+  });
+}
+
+function pasangSlider(){
+  document.getElementById('porsi-prev').addEventListener('click', () => pindahKeSlide(indexPorsi - 1));
+  document.getElementById('porsi-next').addEventListener('click', () => pindahKeSlide(indexPorsi + 1));
+  document.querySelectorAll('.porsi-dots .dot').forEach((dot, i) => {
+    dot.addEventListener('click', () => pindahKeSlide(i));
+  });
+
+  const viewport = document.getElementById('porsi-viewport');
+  let xMulai = null;
+  viewport.addEventListener('touchstart', (e) => { xMulai = e.touches[0].clientX; }, { passive: true });
+  viewport.addEventListener('touchend', (e) => {
+    if (xMulai === null) return;
+    const xAkhir = e.changedTouches[0].clientX;
+    const selisih = xAkhir - xMulai;
+    if (selisih > 50) pindahKeSlide(indexPorsi - 1);      // swipe ke kanan -> porsi sebelumnya
+    else if (selisih < -50) pindahKeSlide(indexPorsi + 1); // swipe ke kiri -> porsi berikutnya
+    xMulai = null;
   });
 }
 
@@ -106,54 +166,28 @@ function tampilkanMingguIni(menuMingguan, kunciHariIni, tanggalAktif){
 let dataGlobal = null;
 let kunciHariIniGlobal = '';
 
-function pilihTanggal(tanggal){
-  renderUntukTanggal(tanggal);
-}
-
 function renderUntukTanggal(tanggal){
   if (!dataGlobal) return;
   const entry = (dataGlobal.menu || {})[tanggal];
   const tombolKembali = document.getElementById('kembali-hari-ini');
 
   if (!entry){
-    tampilkanIsiOmpreng([]);
-    tampilkanGizi(null);
-    tampilkanPenerimaManfaat(null);
-    tampilkanPeringatan('');
-    tampilkanFoto(null);
-    document.getElementById('foto-placeholder').querySelector('span').textContent =
-      'Menu untuk tanggal ini belum diunggah';
+    ['kecil','besar'].forEach(p => tampilkanSatuPorsi(p, { porsi: {} }));
   } else {
-    document.getElementById('foto-placeholder').querySelector('span').textContent =
-      'Foto menu belum diunggah';
     document.getElementById('hari-tanggal').textContent =
       formatTanggalIndonesia(new Date(tanggal + 'T00:00:00'));
-    tampilkanFoto(entry.foto);
-    tampilkanIsiOmpreng(entry.isiOmpreng);
-    tampilkanGizi(entry.gizi);
-    tampilkanPenerimaManfaat(entry.penerimaManfaat);
-    tampilkanPeringatan(entry.peringatan);
+    tampilkanSatuPorsi('kecil', entry);
+    tampilkanSatuPorsi('besar', entry);
   }
 
   tombolKembali.hidden = (tanggal === kunciHariIniGlobal);
   tampilkanMingguIni(dataGlobal.menu, kunciHariIniGlobal, tanggal);
 }
 
-function pasangTab(){
-  const tombolTombol = document.querySelectorAll('.tabs__btn');
-  tombolTombol.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tombolTombol.forEach(b => b.setAttribute('aria-selected', 'false'));
-      btn.setAttribute('aria-selected', 'true');
-
-      document.querySelectorAll('.panel').forEach(p => p.hidden = true);
-      document.getElementById('panel-' + btn.dataset.tab).hidden = false;
-    });
-  });
-}
-
 async function init(){
   pasangTab();
+  pasangSlider();
+  pindahKeSlide(0);
 
   kunciHariIniGlobal = tanggalHariIni();
   document.getElementById('hari-tanggal').textContent = formatTanggalIndonesia(new Date());

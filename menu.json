@@ -13,7 +13,6 @@
       "penerimaManfaat": 3478,
       "porsi": {
         "kecil": {
-          "jam": "09.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -36,7 +35,6 @@
           "foto": "image/menu-2026-08-31-kecil.jpg"
         },
         "besar": {
-          "jam": "12.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -71,7 +69,6 @@
       "penerimaManfaat": 3502,
       "porsi": {
         "kecil": {
-          "jam": "09.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -94,7 +91,6 @@
           "foto": "image/menu-2026-09-01-kecil.jpg"
         },
         "besar": {
-          "jam": "12.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -129,7 +125,6 @@
       "penerimaManfaat": 3491,
       "porsi": {
         "kecil": {
-          "jam": "09.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -152,7 +147,6 @@
           "foto": "image/menu-2026-09-02-kecil.jpg"
         },
         "besar": {
-          "jam": "12.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -187,7 +181,6 @@
       "penerimaManfaat": 3465,
       "porsi": {
         "kecil": {
-          "jam": "09.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -210,7 +203,6 @@
           "foto": "image/menu-2026-09-03-kecil.jpg"
         },
         "besar": {
-          "jam": "12.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -246,7 +238,6 @@
       "penerimaManfaat": 3510,
       "porsi": {
         "kecil": {
-          "jam": "09.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -269,7 +260,6 @@
           "foto": "image/menu-2026-09-04-kecil.jpg"
         },
         "besar": {
-          "jam": "12.00 WIB",
           "gizi": [
             {
               "label": "Energi",

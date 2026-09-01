@@ -176,16 +176,6 @@ body{
   font-size: 14.5px;
   color: var(--biru-tua-2);
 }
-.torn-box__jam{
-  display: inline-block;
-  margin: 0 0 10px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--biru-langit);
-  color: var(--biru-tua-2);
-  font-size: 11.5px;
-  font-weight: 600;
-}
 .torn-box__angka{
   margin: 0;
   font-family: var(--font-judul);
@@ -208,13 +198,7 @@ body{
   white-space: nowrap;
 }
 
-.gizi-columns{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-#box-penerima{ margin-top: 12px; }
+.torn-box--accent{ margin-top: 16px; }
 
 .notice{
   border-left: 3px solid var(--emas-gelap);
@@ -252,50 +236,6 @@ body{
   font-size: 15px;
   color: var(--biru-tua-2);
   margin: 0 0 10px;
-}
-.week__list{
-  margin: 0; padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.week__list li{
-  display: flex;
-  gap: 10px;
-  align-items: baseline;
-  font-size: 13px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: background .12s ease;
-}
-.week__list li:hover{
-  background: var(--biru-langit);
-}
-.week__list li.hari-ini{
-  background: #FFF3E0;
-}
-.week__list li.aktif{
-  border-color: var(--biru-utama);
-  background: #E3F2FD;
-}
-.week__list li.aktif.hari-ini{
-  border-color: var(--emas-gelap);
-  background: #FFF3E0;
-}
-.week__list .hari{
-  font-weight: 700;
-  color: var(--biru-tua-2);
-  width: 46px;
-  flex-shrink: 0;
-}
-.week__list .ringkasan{
-  color: var(--teks-lembut);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .card__footer{
@@ -393,19 +333,14 @@ body{
   margin: 0 20px 12px;
 }
 
-.torn-box__jam--slide{
-  display: block;
-  width: fit-content;
-  margin: 0 20px 10px;
-}
-
 /* ====== MENU MINGGU INI (kotak hari, tanpa isi menu) ====== */
 .week__list{
   display: flex;
   flex-direction: row;
   gap: 8px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  overflow-y: visible;
+  padding: 4px 2px 6px;
   scrollbar-width: none;
 }
 .week__list::-webkit-scrollbar{ display: none; }
@@ -423,16 +358,19 @@ body{
   font-weight: 700;
   font-size: 12.5px;
   border-radius: 12px;
+  border: 2px solid transparent;
+  box-sizing: border-box;
   cursor: pointer;
-  transition: transform .15s ease, background .15s ease;
+  transition: background .15s ease, border-color .15s ease;
 }
-.week__list li .ringkasan{ display: none; }
 .week__list li:hover{ background: var(--biru-langit); }
 .week__list li.hari-ini{
   background: var(--emas);
   color: var(--biru-tua);
 }
 .week__list li.aktif{
-  transform: scale(1.12);
-  box-shadow: 0 6px 14px -6px rgba(46,134,193,.5);
+  border-color: var(--biru-utama);
+}
+.week__list li.aktif.hari-ini{
+  border-color: var(--biru-tua);
 }

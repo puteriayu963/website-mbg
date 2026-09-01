@@ -68,12 +68,6 @@ function isiGizi(idUl, daftar){
   }
 }
 
-function isiJam(idEl, jam){
-  const el = document.getElementById(idEl);
-  el.textContent = jam || '';
-  el.style.display = jam ? 'inline-block' : 'none';
-}
-
 function isiPeringatan(idEl, teks){
   document.getElementById(idEl).textContent =
     (teks && teks.trim().length > 0) ? teks : 'Tidak ada peringatan khusus untuk menu hari ini.';
@@ -85,7 +79,6 @@ function tampilkanSatuPorsi(porsiKey, entry){
   tampilkanFoto('foto-menu-' + porsiKey, 'foto-placeholder-' + porsiKey, dataPorsi && dataPorsi.foto);
   isiListMakanan('list-isiOmpreng-' + porsiKey, entry.isiOmpreng);
   isiPenerimaManfaat('angka-penerima-' + porsiKey, entry.penerimaManfaat);
-  isiJam('jam-' + porsiKey, dataPorsi && dataPorsi.jam);
   isiGizi('list-gizi-' + porsiKey, dataPorsi && dataPorsi.gizi);
   isiPeringatan('teks-peringatan-' + porsiKey, dataPorsi && dataPorsi.peringatan);
 }

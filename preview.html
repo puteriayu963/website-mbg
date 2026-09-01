@@ -186,16 +186,6 @@ body{
   font-size: 14.5px;
   color: var(--biru-tua-2);
 }
-.torn-box__jam{
-  display: inline-block;
-  margin: 0 0 10px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--biru-langit);
-  color: var(--biru-tua-2);
-  font-size: 11.5px;
-  font-weight: 600;
-}
 .torn-box__angka{
   margin: 0;
   font-family: var(--font-judul);
@@ -218,13 +208,7 @@ body{
   white-space: nowrap;
 }
 
-.gizi-columns{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-#box-penerima{ margin-top: 12px; }
+.torn-box--accent{ margin-top: 16px; }
 
 .notice{
   border-left: 3px solid var(--emas-gelap);
@@ -262,50 +246,6 @@ body{
   font-size: 15px;
   color: var(--biru-tua-2);
   margin: 0 0 10px;
-}
-.week__list{
-  margin: 0; padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.week__list li{
-  display: flex;
-  gap: 10px;
-  align-items: baseline;
-  font-size: 13px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: background .12s ease;
-}
-.week__list li:hover{
-  background: var(--biru-langit);
-}
-.week__list li.hari-ini{
-  background: #FFF3E0;
-}
-.week__list li.aktif{
-  border-color: var(--biru-utama);
-  background: #E3F2FD;
-}
-.week__list li.aktif.hari-ini{
-  border-color: var(--emas-gelap);
-  background: #FFF3E0;
-}
-.week__list .hari{
-  font-weight: 700;
-  color: var(--biru-tua-2);
-  width: 46px;
-  flex-shrink: 0;
-}
-.week__list .ringkasan{
-  color: var(--teks-lembut);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .card__footer{
@@ -403,19 +343,14 @@ body{
   margin: 0 20px 12px;
 }
 
-.torn-box__jam--slide{
-  display: block;
-  width: fit-content;
-  margin: 0 20px 10px;
-}
-
 /* ====== MENU MINGGU INI (kotak hari, tanpa isi menu) ====== */
 .week__list{
   display: flex;
   flex-direction: row;
   gap: 8px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  overflow-y: visible;
+  padding: 4px 2px 6px;
   scrollbar-width: none;
 }
 .week__list::-webkit-scrollbar{ display: none; }
@@ -433,29 +368,29 @@ body{
   font-weight: 700;
   font-size: 12.5px;
   border-radius: 12px;
+  border: 2px solid transparent;
+  box-sizing: border-box;
   cursor: pointer;
-  transition: transform .15s ease, background .15s ease;
+  transition: background .15s ease, border-color .15s ease;
 }
-.week__list li .ringkasan{ display: none; }
 .week__list li:hover{ background: var(--biru-langit); }
 .week__list li.hari-ini{
   background: var(--emas);
   color: var(--biru-tua);
 }
 .week__list li.aktif{
-  transform: scale(1.12);
-  box-shadow: 0 6px 14px -6px rgba(46,134,193,.5);
+  border-color: var(--biru-utama);
 }
-.card__logo--preview{
-  width: 46px; height: 46px;
-  border-radius: 50%;
+.week__list li.aktif.hari-ini{
+  border-color: var(--biru-tua);
+}
+.card__logo{
   background: #FFFFFF;
   color: #1B3B6F;
   display:flex; align-items:center; justify-content:center;
   font-family: var(--font-judul);
   font-weight:800;
   font-size:12px;
-  flex-shrink:0;
 }
 .preview-note{
   max-width:420px;
@@ -469,12 +404,12 @@ body{
 </head>
 <body>
 
-<p class="preview-note">Preview — tiap slide sekarang punya foto sendiri. Klik ‹ › atau titik buat ganti porsi</p>
+<p class="preview-note">Preview — badge jam sudah hilang, jarak Penerima Manfaat sudah dibenerin, kotak hari sudah nggak kepotong lagi</p>
 
 <main class="card" id="card">
 
   <header class="card__header">
-    <div class="card__logo--preview">BGN</div>
+    <img class="card__logo" src="logo-BGN.png" alt="Logo BGN" />
     <div class="card__title">
       <p class="card__eyebrow">Makan Bergizi Gratis</p>
       <h1 class="card__sppg" id="nama-sppg">Memuat…</h1>
@@ -496,17 +431,19 @@ body{
   <div class="porsi-viewport" id="porsi-viewport">
     <div class="porsi-track" id="porsi-track">
 
+      <!-- ==== SLIDE: PORSI KECIL ==== -->
       <section class="porsi-slide" data-porsi="kecil">
         <div class="card__photo card__photo--slide" id="foto-wrap-kecil">
           <img id="foto-menu-kecil" src="" alt="Foto menu porsi kecil" hidden />
           <div class="card__photo-placeholder" id="foto-placeholder-kecil"></div>
         </div>
-        <p class="torn-box__jam torn-box__jam--slide" id="jam-kecil"></p>
+
         <nav class="tabs" data-tabgroup="kecil">
           <button class="tabs__btn" data-tab="isiOmpreng" aria-selected="true">Isi Ompreng</button>
           <button class="tabs__btn" data-tab="gizi" aria-selected="false">Gizi</button>
           <button class="tabs__btn" data-tab="peringatan" aria-selected="false">Peringatan</button>
         </nav>
+
         <section class="panel" data-panel="isiOmpreng">
           <ul class="panel__list" id="list-isiOmpreng-kecil"></ul>
           <div class="torn-box torn-box--accent" id="box-penerima-kecil">
@@ -514,9 +451,11 @@ body{
             <p class="torn-box__angka" id="angka-penerima-kecil">–</p>
           </div>
         </section>
+
         <section class="panel" data-panel="gizi" hidden>
           <ul class="panel__list panel__list--gizi" id="list-gizi-kecil"></ul>
         </section>
+
         <section class="panel" data-panel="peringatan" hidden>
           <div class="notice">
             <p class="notice__title">Peringatan</p>
@@ -525,17 +464,19 @@ body{
         </section>
       </section>
 
+      <!-- ==== SLIDE: PORSI BESAR ==== -->
       <section class="porsi-slide" data-porsi="besar">
         <div class="card__photo card__photo--slide" id="foto-wrap-besar">
           <img id="foto-menu-besar" src="" alt="Foto menu porsi besar" hidden />
           <div class="card__photo-placeholder" id="foto-placeholder-besar"></div>
         </div>
-        <p class="torn-box__jam torn-box__jam--slide" id="jam-besar"></p>
+
         <nav class="tabs" data-tabgroup="besar">
           <button class="tabs__btn" data-tab="isiOmpreng" aria-selected="true">Isi Ompreng</button>
           <button class="tabs__btn" data-tab="gizi" aria-selected="false">Gizi</button>
           <button class="tabs__btn" data-tab="peringatan" aria-selected="false">Peringatan</button>
         </nav>
+
         <section class="panel" data-panel="isiOmpreng">
           <ul class="panel__list" id="list-isiOmpreng-besar"></ul>
           <div class="torn-box torn-box--accent" id="box-penerima-besar">
@@ -543,9 +484,11 @@ body{
             <p class="torn-box__angka" id="angka-penerima-besar">–</p>
           </div>
         </section>
+
         <section class="panel" data-panel="gizi" hidden>
           <ul class="panel__list panel__list--gizi" id="list-gizi-besar"></ul>
         </section>
+
         <section class="panel" data-panel="peringatan" hidden>
           <div class="notice">
             <p class="notice__title">Peringatan</p>
@@ -584,7 +527,6 @@ const DATA_CONTOH = {
       "penerimaManfaat": 3478,
       "porsi": {
         "kecil": {
-          "jam": "09.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -607,7 +549,6 @@ const DATA_CONTOH = {
           "foto": "image/menu-2026-08-31-kecil.jpg"
         },
         "besar": {
-          "jam": "12.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -642,7 +583,6 @@ const DATA_CONTOH = {
       "penerimaManfaat": 3502,
       "porsi": {
         "kecil": {
-          "jam": "09.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -665,7 +605,6 @@ const DATA_CONTOH = {
           "foto": "image/menu-2026-09-01-kecil.jpg"
         },
         "besar": {
-          "jam": "12.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -700,7 +639,6 @@ const DATA_CONTOH = {
       "penerimaManfaat": 3491,
       "porsi": {
         "kecil": {
-          "jam": "09.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -723,7 +661,6 @@ const DATA_CONTOH = {
           "foto": "image/menu-2026-09-02-kecil.jpg"
         },
         "besar": {
-          "jam": "12.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -758,7 +695,6 @@ const DATA_CONTOH = {
       "penerimaManfaat": 3465,
       "porsi": {
         "kecil": {
-          "jam": "09.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -781,7 +717,6 @@ const DATA_CONTOH = {
           "foto": "image/menu-2026-09-03-kecil.jpg"
         },
         "besar": {
-          "jam": "12.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -817,7 +752,6 @@ const DATA_CONTOH = {
       "penerimaManfaat": 3510,
       "porsi": {
         "kecil": {
-          "jam": "09.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -840,7 +774,6 @@ const DATA_CONTOH = {
           "foto": "image/menu-2026-09-04-kecil.jpg"
         },
         "besar": {
-          "jam": "12.00 WIB",
           "gizi": [
             {
               "label": "Energi",
@@ -898,14 +831,12 @@ function isiGizi(idUl, daftar){
     ul.appendChild(li);
   });
 }
-function isiJam(idEl, jam){ document.getElementById(idEl).textContent = jam || ''; }
 function isiPeringatan(idEl, teks){ document.getElementById(idEl).textContent = teks || '-'; }
 function tampilkanSatuPorsi(porsiKey, entry){
   const dataPorsi = entry.porsi && entry.porsi[porsiKey];
   tampilkanFoto('foto-menu-' + porsiKey, 'foto-placeholder-' + porsiKey, dataPorsi && dataPorsi.foto);
   isiListMakanan('list-isiOmpreng-' + porsiKey, entry.isiOmpreng);
   isiPenerimaManfaat('angka-penerima-' + porsiKey, entry.penerimaManfaat);
-  isiJam('jam-' + porsiKey, dataPorsi && dataPorsi.jam);
   isiGizi('list-gizi-' + porsiKey, dataPorsi && dataPorsi.gizi);
   isiPeringatan('teks-peringatan-' + porsiKey, dataPorsi && dataPorsi.peringatan);
 }

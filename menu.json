@@ -62,11 +62,12 @@
       "hari": "Selasa",
       "isiOmpreng": [
         "Nasi putih",
-        "Telur bumbu bali",
-        "Sayur bayam bening",
-        "Semangka"
+        "Telur Fuyunghai Ayam",
+        "Tempe Stik",
+        "Tumis Sayur",
+        "Anggur Hijau"
       ],
-      "penerimaManfaat": 3502,
+      "penerimaManfaat": 3.485,
       "porsi": {
         "kecil": {
           "gizi": [
@@ -88,7 +89,7 @@
             }
           ],
           "peringatan": "Harap dikonsumsi segera setelah diterima.",
-          "foto": "image/menu-2026-09-01-kecil.jpg"
+          "foto": "image/menu-2026-09-01-kecil.jpeg"
         },
         "besar": {
           "gizi": [
@@ -110,7 +111,7 @@
             }
           ],
           "peringatan": "Harap dikonsumsi segera setelah diterima.",
-          "foto": "image/menu-2026-09-01-besar.jpg"
+          "foto": "image/menu-2026-09-01-besar.jpeg"
         }
       }
     },
